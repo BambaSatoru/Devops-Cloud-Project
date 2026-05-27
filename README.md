@@ -1,15 +1,15 @@
-# CloudAPI - Infrastructure Cloud-Native avec Kubernetes
+# CloudAPI - Cloud-Native Infrastructure with Kubernetes
 
-Une application REST complète démontrant les meilleures pratiques DevOps et l'orchestration cloud. Ce projet intègre une API Flask, une base de données MySQL et un déploiement Kubernetes, illustrant une architecture microservices moderne et scalable.
+A complete REST application demonstrating DevOps best practices and cloud orchestration. This project integrates a Flask API, a MySQL database, and Kubernetes deployment, illustrating a modern and scalable microservices architecture.
 
-## Objectif du Projet
+## Project Objective
 
-Ce projet showcas une pile technologique complète pour :
-- Développer une API REST sécurisée et performante
-- Containeriser l'application avec Docker
-- Orchestrer les services avec Kubernetes
-- Implémenter l'infrastructure-as-code (IaC)
-- Démontrer les bonnes pratiques DevOps
+This project showcases a complete technology stack for:
+- Developing a secure and performant REST API
+- Containerizing applications with Docker
+- Orchestrating services with Kubernetes
+- Implementing Infrastructure-as-Code (IaC)
+- Demonstrating DevOps best practices
 
 ## Architecture
 
@@ -25,45 +25,45 @@ Ce projet showcas une pile technologique complète pour :
 └─────────────────────────────────────────────────┘
 ```
 
-## Prérequis
+## Prerequisites
 
 - Docker (≥ 20.0)
-- Kubernetes (Minikube pour le développement local)
-- kubectl (outil CLI Kubernetes)
+- Kubernetes (Minikube for local development)
+- kubectl (Kubernetes CLI tool)
 - Python 3.8+
 - MySQL 8.0+
 
-## Structure du Projet
+## Project Structure
 
 ```
 .
-├── app.py                      # Application Flask (endpoints REST)
-├── requirements.txt            # Dépendances Python
-├── Dockerfile                  # Image Docker pour l'API
-├── init-job.yaml              # Job Kubernetes pour initialiser la DB
-├── mysql-deployment.yaml      # Déploiement MySQL
-├── flask-api-deployment.yaml  # Déploiement Flask API
+├── app.py                      # Flask application (REST endpoints)
+├── requirements.txt            # Python dependencies
+├── Dockerfile                  # Docker image for the API
+├── init-job.yaml              # Kubernetes Job to initialize DB
+├── mysql-deployment.yaml      # MySQL deployment
+├── flask-api-deployment.yaml  # Flask API deployment
 └── README.md
 ```
 
-## Détails Techniques
+## Technical Details
 
-### API Flask
-- Framework : Flask
-- Base de données : MySQL 8.0
-- Endpoints :
-  - GET /users - Récupère la liste des utilisateurs
-  - POST /users - Crée un nouvel utilisateur
+### Flask API
+- Framework: Flask
+- Database: MySQL 8.0
+- Endpoints:
+  - GET /users - Retrieves the list of users
+  - POST /users - Creates a new user
 
-### Docker et Kubernetes
-- Containerisation avec Docker pour la portabilité
-- Déploiement orchestré via Kubernetes
-- Gestion des secrets et configurations via ConfigMaps
-- Persistance des données avec Persistent Volumes
+### Docker and Kubernetes
+- Containerization with Docker for portability
+- Orchestrated deployment via Kubernetes
+- Secret and configuration management via ConfigMaps
+- Data persistence with Persistent Volumes
 
-## Déploiement
+## Deployment
 
-### 1. Préparer l'image Docker
+### 1. Prepare the Docker Image
 
 ```bash
 docker build -t <docker-username>/flask-api:latest .
@@ -71,77 +71,77 @@ docker login
 docker push <docker-username>/flask-api:latest
 ```
 
-### 2. Démarrer Kubernetes
+### 2. Start Kubernetes
 
 ```bash
 minikube start
 ```
 
-### 3. Déployer l'infrastructure
+### 3. Deploy the Infrastructure
 
 ```bash
-# Initialiser la base de données
+# Initialize the database
 kubectl apply -f init-job.yaml
 
-# Déployer MySQL
+# Deploy MySQL
 kubectl apply -f mysql-deployment.yaml
 
-# Déployer l'API Flask
+# Deploy Flask API
 kubectl apply -f flask-api-deployment.yaml
 ```
 
-### 4. Vérifier le déploiement
+### 4. Verify the Deployment
 
 ```bash
-# Voir les jobs
+# View jobs
 kubectl get jobs
 
-# Voir les pods
+# View pods
 kubectl get pods
 
-# Voir les services
+# View services
 kubectl get svc
 
-# Vérifier les logs
+# Check logs
 kubectl logs -f deployment/flask-api
 ```
 
-### 5. Accéder à l'API
+### 5. Access the API
 
 ```bash
-# Port-forward vers l'API
+# Port-forward to the API
 kubectl port-forward svc/flask-api-service 5000:5000
 
-# Tester les endpoints
+# Test the endpoints
 curl http://localhost:5000/users
 curl -X POST http://localhost:5000/users -H "Content-Type: application/json" -d '{"name":"John"}'
 ```
 
-## Composition du Projet
+## Project Composition
 
-- Python : 89.6% (logique applicative)
-- Dockerfile : 10.4% (configuration conteneur)
+- Python: 89.6% (application logic)
+- Dockerfile: 10.4% (container configuration)
 
-## Concepts DevOps Démontrés
+## DevOps Concepts Demonstrated
 
-Containerisation - Docker et images optimisées
-Orchestration - Déploiements Kubernetes
+Containerization - Docker and optimized images
+Orchestration - Kubernetes deployments
 Infrastructure as Code - YAML manifests
-Scalabilité - Répliques de pods configurables
-Persistance - Gestion des données dans Kubernetes
-Monitoring - Vérification de l'état des services
+Scalability - Configurable pod replicas
+Data Persistence - Data management in Kubernetes
+Monitoring - Service health verification
 
-## Ressources Utiles
+## Useful Resources
 
-- [Documentation Kubernetes](https://kubernetes.io/docs/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
 - [Flask Documentation](https://flask.palletsprojects.com/)
 - [Docker Documentation](https://docs.docker.com/)
 - [Minikube Guide](https://minikube.sigs.k8s.io/)
 
-## Licence
+## License
 
-Ce projet est libre d'utilisation à des fins éducatives et professionnelles.
+This project is free to use for educational and professional purposes.
 
 ---
 
-Développé par : BambaSatoru
+Developed by: BambaSatoru
